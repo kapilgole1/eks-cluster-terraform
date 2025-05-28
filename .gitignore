@@ -1,2 +1,4 @@
 terraform.tfvars
 VPC.png
+.terraform
+.terraform.lock.hcl
