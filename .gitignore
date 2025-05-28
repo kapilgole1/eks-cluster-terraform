@@ -1,6 +1,7 @@
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfplan
+crash.log
 terraform.tfvars
-VPC.png
-.terraform
-.terraform.lock.hcl
-terraform.tfstate
-terraform.tfstate.backup
