@@ -142,10 +142,10 @@ terraform destroy
 
 ---
 
-## 🧠 Author
+## 👤 Author
 
 **Kapil Gole**  
-DevOps Enthusiast | Cloud Learner
+Cloud & DevOps Enthusiast | Continuous Learner
 
 ---
 
