@@ -1,63 +1,116 @@
-# AWS VPC with Public and Private Subnets Terraform Module
+# 🚀 EKS Cluster Infrastructure with Terraform
 
-This Terraform project provisions an **AWS Virtual Private Cloud (VPC)** with the following architecture:
-
-- **VPC CIDR:** 10.0.0.0/16
-- **Public Subnet:** 10.0.1.0/24
-  - Has Internet Gateway (IGW) attached
-  - Route table allows internet access (`0.0.0.0/0 → IGW`)
-  - Hosts resources accessible from the internet
-- **Private Subnet:** 10.0.2.0/24
-  - No direct internet access (no NAT Gateway or IGW route)
-  - Route table restricts outbound traffic only to public subnet
-  - Can only communicate with resources in the public subnet
-- **Security Groups:**
-  - Public subnet SG allows inbound internet traffic (e.g., SSH) and traffic from private subnet
-  - Private subnet SG allows inbound/outbound traffic only to/from public subnet
+This repository contains Terraform code to provision an **Amazon EKS (Elastic Kubernetes Service)** cluster along with its VPC, subnets, NAT Gateway, IAM roles, and a managed node group.
 
 ---
 
-## Architecture Overview
+## 📐 Architecture
 
-```text
-VPC (10.0.0.0/16)
-├── Public Subnet (10.0.1.0/24)
-│   ├── Internet Gateway (IGW)
-│   ├── Route Table: 0.0.0.0/0 → IGW
-│   └── Security Group: Allow inbound from internet and private subnet
-│
-└── Private Subnet (10.0.2.0/24)
-    ├── Route Table: No internet route
-    └── Security Group: Allow inbound/outbound only from/to public subnet
+![VPC Architecture](VPC.png)
+
+- **VPC** with public and private subnets  
+- **Internet Gateway** and **NAT Gateway**  
+- **Route tables** for public/private routing  
+- **IAM roles and policies** for EKS and EC2 nodes  
+- **Amazon EKS Cluster** with a managed **node group** in a public subnet  
+
+---
+
+## 📦 Folder Structure
+
+```
+.
+├── main.tf                # Terraform resources
+├── variables.tf           # Input variables
+├── terraform.tfvars       # Variable values (user-specific)
+├── output.tf              # Outputs
+├── README.md              # This file
+├── terraform.tfstate*     # Terraform state files
+└── VPC.png                # Architecture diagram
 ```
 
 ---
 
-## Features
+## ⚙️ Prerequisites
 
-- VPC creation with specified CIDR block.
-- Public and private subnet setup with proper route tables.
-- Internet Gateway attached to the VPC and routed via public subnet.
-- Security groups to restrict communication:
-  - Public subnet SG allows inbound from internet and private subnet.
-  - Private subnet SG allows inbound and outbound **only** from/to public subnet.
-- No NAT Gateway is created, so private subnet cannot access the internet.
+- AWS CLI installed and configured  
+- Terraform >= 1.3  
+- AWS IAM user with EKS and VPC permissions  
+- kubectl installed  
 
 ---
 
-## Prerequisites
+## 🔧 How to Use
 
-- Terraform v1.0 or newer installed ([Install Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli))
-- AWS CLI installed and configured with credentials ([AWS CLI Setup](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html))
-- AWS account with permissions to create networking resources
-
----
-
-## Getting Started
-
-1. **Clone the repository**
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/terraform-aws-vpc-public-private.git
-cd terraform-aws-vpc-public-private
+git clone https://github.com/your-username/eks-cluster-terraform.git
+cd eks-cluster-terraform
+```
 
+### 2. Initialize Terraform
+
+```bash
+terraform init
+```
+
+### 3. Update Variables
+
+Modify the `terraform.tfvars` file with your desired values:
+
+```hcl
+aws_region           = "us-east-1"
+vpc_cidr             = "10.0.0.0/16"
+public_subnet_cidr   = "10.0.1.0/24"
+private_subnet_cidr  = "10.0.2.0/24"
+availability_zone    = ["us-east-1a", "us-east-1b"]
+```
+
+### 4. Apply the Infrastructure
+
+```bash
+terraform apply
+```
+
+> Review the changes and type `yes` to confirm.
+
+### 5. Configure `kubectl`
+
+```bash
+aws eks --region <your-region> update-kubeconfig --name kapil-eks-cluster
+kubectl get nodes
+```
+
+---
+
+## ✅ Outputs
+
+After successful deployment, Terraform will output:
+
+- EKS Cluster Name  
+- VPC ID  
+- Subnet IDs  
+
+---
+
+## 🧹 Clean Up
+
+To destroy all resources:
+
+```bash
+terraform destroy
+```
+
+---
+
+## 🧠 Author
+
+**Kapil Gole**  
+DevOps Enthusiast | Cloud Learner
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
