@@ -47,7 +47,7 @@ This repository contains Terraform code to provision an **Amazon EKS (Elastic Ku
 
 ---
 
-> [!🚧 Future Plans]
+> 🚧 Future Plans
 
 >    1. Modularize Terraform code for reusability and scalability
 
