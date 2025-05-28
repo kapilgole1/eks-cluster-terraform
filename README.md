@@ -83,7 +83,7 @@ This repository contains Terraform code to provision an **Amazon EKS (Elastic Ku
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/eks-cluster-terraform.git
+git clone https://github.com/kapilgole1/eks-cluster-terraform.git
 cd eks-cluster-terraform
 ```
 
@@ -116,7 +116,7 @@ terraform apply
 ### 5. Configure `kubectl`
 
 ```bash
-aws eks --region <your-region> update-kubeconfig --name kapil-eks-cluster
+aws eks --region <your-region> update-kubeconfig --name <eks-cluster-name>
 kubectl get nodes
 ```
 
