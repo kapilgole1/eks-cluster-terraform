@@ -16,6 +16,22 @@ This repository contains Terraform code to provision an **Amazon EKS (Elastic Ku
 
 ---
 
+## Architecture Components
+
+| Component            | Description                                             |
+|----------------------|---------------------------------------------------------|
+| VPC                  | Custom Virtual Private Cloud with CIDR and DNS enabled  |
+| Internet Gateway     | Allows public internet access to public subnet          |
+| Public Subnet        | Subnet with public IP mapping for EKS node group        |
+| Private Subnet       | Subnet for private resources, routed through NAT Gateway|
+| NAT Gateway          | Enables private subnet instances to access internet     |
+| Route Tables         | Public and private route tables to manage traffic flow  |
+| IAM Roles            | Roles for EKS control plane and worker node permissions |
+| EKS Cluster          | Managed Kubernetes control plane                         |
+| EKS Node Group       | EC2 instances running Kubernetes worker nodes           |
+
+---
+
 ## 📦 Folder Structure
 
 ```
