@@ -47,6 +47,28 @@ This repository contains Terraform code to provision an **Amazon EKS (Elastic Ku
 
 ---
 
+🚧 Future Plans
+
+    Modularize Terraform code for reusability and scalability
+
+    Add Terraform Cloud backend support for state management
+
+    Integrate CI/CD pipelines using GitHub Actions or Jenkins
+
+    Implement Argo CD for GitOps-based Kubernetes app deployment
+
+    Add support for private EKS endpoints and security groups
+
+    Add EKS Fargate profiles for serverless pods
+
+    Implement monitoring and logging with Prometheus, Grafana, and ELK stack
+
+    Automate IAM role policies and node group autoscaling
+
+    Create comprehensive unit and integration tests using Terraform testing frameworks
+
+---
+
 ## ⚙️ Prerequisites
 
 - AWS CLI installed and configured  
