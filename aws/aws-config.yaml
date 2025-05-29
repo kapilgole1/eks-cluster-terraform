@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: meanstack
+  name: database-config
+data:
+  MONGO_URI: "mongodb://mongo:27017/dd_db"

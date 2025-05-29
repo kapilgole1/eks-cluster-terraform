@@ -1,0 +1,2 @@
+#Command for kubeconfig
+aws eks update-kubeconfig --region <your-region> --name kapil-eks-cluster
